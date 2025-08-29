@@ -1,0 +1,109 @@
+.service-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    &.selected {
+        border-color: #9ebcb9;
+        transform: translateY(-2px);
+    }
+}
+
+.service-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.service-category {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(158, 188, 185, 0.9);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.service-content {
+    padding: 20px;
+}
+
+.service-name {
+    color: #2c2c2c;
+    margin: 0 0 8px 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.service-description {
+    color: #666;
+    margin: 0 0 16px 0;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.service-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.service-duration {
+    display: flex;
+    align-items: center;
+    color: #888;
+    font-size: 14px;
+
+    .icon-clock::before {
+        content: "🕒";
+        margin-right: 4px;
+    }
+}
+
+.service-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #9ebcb9;
+}
+
+.select-btn {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #9ebcb9;
+    background: transparent;
+    color: #9ebcb9;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+        background: #9ebcb9;
+        color: white;
+    }
+
+    &.selected {
+        background: #9ebcb9;
+        color: white;
+    }
+}

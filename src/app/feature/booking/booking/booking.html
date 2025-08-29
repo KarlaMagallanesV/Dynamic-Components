@@ -1,0 +1,96 @@
+<div class="booking-container">
+    <header class="booking-header">
+        <h1>Reserva tu cita en NireSpa</h1>
+        <p>Elige tu servicio, estilista y horario preferido</p>
+    </header>
+
+    <!-- Paso 1: Seleccionar Servicio -->
+    <section class="booking-step" [class.completed]="selectedService">
+        <div class="step-header">
+            <div class="step-number">1</div>
+            <h2>Selecciona tu Servicio</h2>
+        </div>
+
+        <div class="services-grid">
+            <app-service-card *ngFor="let service of services" [service]="service"
+                [isSelected]="selectedService?.id === service.id" (serviceSelected)="onServiceSelected($event)">
+            </app-service-card>
+        </div>
+    </section>
+
+    <!-- Paso 2: Seleccionar Estilista -->
+    <section class="booking-step" [class.disabled]="!selectedService" [class.completed]="selectedStylist">
+        <div class="step-header">
+            <div class="step-number">2</div>
+            <h2>Elige tu Estilista Favorita</h2>
+        </div>
+
+        <div class="stylists-grid" *ngIf="selectedService">
+            <app-stylist-profile *ngFor="let stylist of getAvailableStylists()" [stylist]="stylist"
+                [isSelected]="selectedStylist?.id === stylist.id" [showBio]="false"
+                (stylistSelected)="onStylistSelected($event)">
+            </app-stylist-profile>
+        </div>
+
+        <p class="step-placeholder" *ngIf="!selectedService">
+            Primero selecciona un servicio para ver los estilistas disponibles
+        </p>
+    </section>
+
+    <!-- Paso 3: Seleccionar Horario -->
+    <section class="booking-step" [class.disabled]="!selectedService || !selectedStylist"
+        [class.completed]="selectedSlot">
+        <div class="step-header">
+            <div class="step-number">3</div>
+            <h2>Selecciona Fecha y Hora</h2>
+        </div>
+
+        <div class="date-selector" *ngIf="selectedService && selectedStylist">
+            <div class="date-tabs">
+                <button *ngFor="let date of getNext7Days()" class="date-tab" [class.active]="selectedDate === date"
+                    (click)="onDateSelected(date)">
+                    {{ formatDateTab(date) }}
+                </button>
+            </div>
+
+            <div class="time-slots" *ngIf="selectedDate">
+                <app-appointment-slot *ngFor="let slot of getAvailableSlots(selectedDate)" [slot]="slot"
+                    [isSelected]="selectedSlot?.id === slot.id" (slotSelected)="onSlotSelected($event)">
+                </app-appointment-slot>
+            </div>
+        </div>
+
+        <p class="step-placeholder" *ngIf="!selectedService || !selectedStylist">
+            Selecciona un servicio y estilista para ver los horarios disponibles
+        </p>
+    </section>
+
+    <!-- Resumen de la Reserva -->
+    <section class="booking-summary" *ngIf="selectedService && selectedStylist && selectedSlot">
+        <h2>Resumen de tu Reserva</h2>
+        <div class="summary-content">
+            <div class="summary-item">
+                <strong>Servicio:</strong> {{ selectedService.name }}
+            </div>
+            <div class="summary-item">
+                <strong>Estilista:</strong> {{ selectedStylist.name }}
+            </div>
+            <div class="summary-item">
+                <strong>Fecha:</strong> {{ formatFullDate(selectedSlot.date) }}
+            </div>
+            <div class="summary-item">
+                <strong>Hora:</strong> {{ selectedSlot.time }}
+            </div>
+            <div class="summary-item">
+                <strong>Duración:</strong> {{ selectedService.duration }} minutos
+            </div>
+            <div class="summary-item total">
+                <strong>Total:</strong> S/. {{ selectedService.price }}
+            </div>
+        </div>
+
+        <button class="confirm-booking-btn" (click)="confirmBooking()">
+            Confirmar Reserva
+        </button>
+    </section>
+</div>

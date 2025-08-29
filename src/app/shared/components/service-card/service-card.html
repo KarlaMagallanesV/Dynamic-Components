@@ -1,0 +1,25 @@
+<div class="service-card" [class.selected]="isSelected">
+    <div class="service-image">
+        <img [src]="service.imageUrl" [alt]="service.name" />
+        <div class="service-category">{{ getCategoryName(service.category) }}</div>
+    </div>
+
+    <div class="service-content">
+        <h3 class="service-name">{{ service.name }}</h3>
+        <p class="service-description">{{ service.description }}</p>
+
+        <div class="service-details">
+            <div class="service-duration">
+                <i class="icon-clock"></i>
+                {{ service.duration }} min
+            </div>
+            <div class="service-price">
+                S/. {{ service.price }}
+            </div>
+        </div>
+
+        <button class="select-btn" [class.selected]="isSelected" (click)="onSelect()">
+            {{ isSelected ? 'Seleccionado' : 'Seleccionar' }}
+        </button>
+    </div>
+</div>

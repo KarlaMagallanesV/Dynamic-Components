@@ -1,0 +1,16 @@
+<div class="appointment-slot" [class.available]="slot.available" [class.unavailable]="!slot.available"
+    [class.selected]="isSelected" (click)="onSlotSelect()">
+
+    <div class="slot-time">
+        {{ slot.time }}
+    </div>
+
+    <div class="slot-status">
+        <span class="status-indicator"></span>
+        {{ getStatusText() }}
+    </div>
+
+    <div class="slot-date" *ngIf="showDate">
+        {{ formatDate(slot.date) }}
+    </div>
+</div>

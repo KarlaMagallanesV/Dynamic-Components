@@ -1,0 +1,132 @@
+.stylist-profile {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+    display: flex;
+    gap: 16px;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    &.selected {
+        border-color: #9ebcb9;
+        background: linear-gradient(135deg, #faf8f1, white);
+    }
+}
+
+.stylist-avatar {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.stylist-avatar img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #f0f0f0;
+}
+
+.rating-badge {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    background: #9ebcb9;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.rating-stars {
+    color: #9ebcb9;
+}
+
+.stylist-info {
+    flex: 1;
+}
+
+.stylist-name {
+    margin: 0 0 4px 0;
+    color: #2c2c2c;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.stylist-experience {
+    margin: 0 0 12px 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.stylist-specialties {
+    margin-bottom: 12px;
+}
+
+.specialty-tag {
+    display: inline-block;
+    background: #f5f5f5;
+    color: #555;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    border: 1px solid #e0e0e0;
+}
+
+.selected .specialty-tag {
+    background: rgba(158, 188, 185, 0.1);
+    border-color: rgba(158, 188, 185, 0.3);
+    color: #9ebcb9;
+}
+
+.stylist-bio {
+    color: #666;
+    font-size: 13px;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.select-stylist-btn {
+    padding: 10px 16px;
+    border: 2px solid #9ebcb9;
+    background: transparent;
+    color: #9ebcb9;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+        background: #9ebcb9;
+        color: white;
+    }
+
+    &.selected {
+        background: #9ebcb9;
+        color: white;
+    }
+}
+
+@media (max-width: 768px) {
+    .stylist-profile {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .stylist-avatar {
+        align-self: center;
+    }
+}

@@ -1,0 +1,26 @@
+<div class="stylist-profile" [class.selected]="isSelected" (click)="onSelect()">
+    <div class="stylist-avatar">
+        <img [src]="stylist.imageUrl" [alt]="stylist.name" />
+        <div class="rating-badge">
+            <span class="rating-stars">{{ getStars() }}</span>
+            <span class="rating-number">{{ stylist.rating }}</span>
+        </div>
+    </div>
+
+    <div class="stylist-info">
+        <h3 class="stylist-name">{{ stylist.name }}</h3>
+        <p class="stylist-experience">{{ stylist.experience }} años de experiencia</p>
+
+        <div class="stylist-specialties">
+            <span class="specialty-tag" *ngFor="let specialty of stylist.specialties">
+                {{ specialty }}
+            </span>
+        </div>
+
+        <p class="stylist-bio" *ngIf="showBio">{{ stylist.bio }}</p>
+
+        <button class="select-stylist-btn" [class.selected]="isSelected">
+            {{ isSelected ? 'Estilista Seleccionado' : 'Seleccionar Estilista' }}
+        </button>
+    </div>
+</div>
